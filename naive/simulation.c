@@ -1,23 +1,35 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
-// float GenerateNeedles(float range);
-float GetRandom(float max);
+double GenerateNeedle(double interval, double length);
+double GetRandom(double max);
 
-int main(int argc, char *argv[]){
-        if(argc!=3){
-                fprintf(stderr, "Error: Invalid number of arguments.\n");
-                exit(1);
-        }
-        int seed = atoi(argv[1]);
-        float max = atoi(argv[2]);
+int main(){
+        int seed;
+        double length, interval;
+        printf("seed:");
+        scanf("%d", &seed);
+        printf("needle length:");
+        scanf("%lf", &length);
+        printf("interval:");
+        scanf("%lf", &interval);
         srand(seed);
         int i;
         for(i=0; i<10; i++){
-                printf("%lf\n", GetRandom(max));
+                printf("%lf\n", GenerateNeedle(interval, length));
         }
 }
 
-float GetRandom(float max){
-        return ((float)rand() / (float)RAND_MAX) * max;
+// [0, max)の一様乱数
+double GetRandom(double max){
+        return ((double)rand() / (double)RAND_MAX) * max;
+}
+
+// 針の先端位置を生成
+double GenerateNeedle(double interval, double length){
+        double position = GetRandom(interval / 2.0);
+        double sin_theta = sin(GetRandom(M_PI));
+        double projection = (length / 2.0) * sin_theta;
+        return position + projection;
 }
