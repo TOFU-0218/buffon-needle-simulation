@@ -41,7 +41,8 @@ int main(){
         double elapsed = diff_in_sec(&t_start, &t_end);
         printf("===========\n");
         printf("Wall time: %.6f sec\n", elapsed);
-
+        double pi_est = 2.0 * length * loopN / (interval * hits);
+        printf("Estimated pi = %.6f\n", pi_est);
 }
 
 // [0, max)の一様乱数
