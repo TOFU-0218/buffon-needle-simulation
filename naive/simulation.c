@@ -17,8 +17,7 @@ int main(){
         printf("times: ");
         scanf("%d", &loopN);
         srand(seed);
-        int i;
-        for(i=0; i<loopN; i++){
+        for(int i=0; i<loopN; i++){
                 double tipPosition = GenerateNeedle(interval, length);
                 int isOver = 0;
                 if(tipPosition >= interval / 2){
