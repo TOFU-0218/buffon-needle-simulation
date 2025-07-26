@@ -15,6 +15,7 @@ static double diff_in_sec(const struct timespec *start,
 void PrintProgressBar(int current, int total);
 
 int main(){
+        setvbuf(stdout, NULL, _IONBF, 0);
         int seed, loopN;
         double length, interval;
         printf("seed:");
@@ -29,6 +30,9 @@ int main(){
         struct timespec t_start, t_end;
         clock_gettime(CLOCK_MONOTONIC, &t_start);
         int hits = 0;
+        int progress = 1;
+        int ten_percent = loopN/10;
+        printf("\n----------\n");
         for(int i=0; i<loopN; i++){
                 double tipPosition = GenerateNeedle(interval, length);
                 // int isOver = 0;
@@ -38,7 +42,12 @@ int main(){
                 }
                 // printf("%d : %lf\n", isOver, tipPosition);
                 // PrintProgressBar(i, loopN);
+                if(i >= (int)progress*ten_percent){
+                        printf("#");
+                        progress++;
+                }
         }
+        printf("#");
         clock_gettime(CLOCK_MONOTONIC, &t_end);
         printf("\n");
         double elapsed = diff_in_sec(&t_start, &t_end);
