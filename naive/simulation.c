@@ -37,7 +37,7 @@ int main(){
                         hits++;
                 }
                 // printf("%d : %lf\n", isOver, tipPosition);
-                PrintProgressBar(i, loopN);
+                // PrintProgressBar(i, loopN);
         }
         clock_gettime(CLOCK_MONOTONIC, &t_end);
         printf("\n");
